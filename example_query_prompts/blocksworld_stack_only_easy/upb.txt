@@ -1,0 +1,67 @@
+Here is an example problem:
+
+[STATEMENT]
+As initial conditions I have that, Block A is clear, Block B is clear, Block A is on the table, Block B is on the table and the hand is empty.
+My goal is to have that Block A is on top of Block B.
+
+My plan is as follows:
+
+[THOUGHTS]
+1. I look at the goal and stack each tower I need, starting from the bottom.
+My goal only mentions blocks A and B. I check each of the mentioned blocks in order to determine which of them are the bases of towers.
+
+Block A needs to be on top of Block B, so it can't be the base of a tower.
+Block B needs to have Block A on top of it. I double check the goal: this is the only condition that must hold for block B. It does not need to be on top of any other block. Therefore, I can use it as the base of a tower.
+
+In summary, only Block B can be used as a base of a tower.
+
+I build the tower that has Block B as a base. I don't need to move Block B, and I leave it be, as I know it is already placed correctly.
+The block that goes on top of Block B is Block A. I pick up Block A. I stack it on top of Block B.
+This satisfies the part of the goal that says that Block A is on top of Block B.
+No block needs to be on top of Block A. Therefore this tower is complete.
+
+There are no other blocks which can be used as a base of a tower, and all the blocks mentioned in the goal have been placed, so I am done constructing.
+
+2. Now, I write down my plan in the required format:
+
+[PLAN]
+pick up Block A
+stack Block A on top of Block B
+[PLAN END]
+
+Here is another example:
+
+[STATEMENT]
+As initial conditions I have that, Block A is clear, Block B is clear, Block C is clear, Block A is on the table, Block B is on the table, Block C is on the table and the hand is empty.
+My goal is to have that Block B is on top of Block C and Block A is on top of Block B.
+
+My plan is as follows:
+
+[THOUGHTS]
+1. I look at the goal and stack each tower I need, starting from the bottom.
+My goal only mentions blocks B, C and A. I am free to ignore all other blocks. I check each of the mentioned blocks in order to determine which of them are the bases of towers.
+
+Block B needs to be on top of Block C, so it can't be the base of a tower.
+Block C needs Block B on top of it. I double check the goal: this is the only condition that must hold for block C. It does not need to be on top of any other block. Therefore, I can use it as the base of a tower.
+Block A needs to be on top of Block B, so it can't be the base of a tower.
+
+
+In summary, only Block C can be used as the base of a tower.
+
+I build the tower that has Block C as a base. I don't need to move Block C, and I leave it be, as I know it is already placed correctly.
+The block that goes on top of Block C is Block B. I pick up Block B. I stack it on top of Block C.
+This satisfies the part of the goal that says that Block B is on top of Block C.
+The block that goes on top of Block B is Block A. I pick up Block A. I stack it on top of Block B.
+This satisfies the part of the goal that says that Block A is on top of Block B.
+No block needs to be on top of Block A. Therefore this tower is complete.
+
+There are no other blocks which can be used as a base of a tower, and all the blocks mentioned in the goal have been placed, so I am done constructing.
+
+2. Now, I write down my plan in the required format:
+
+[PLAN]
+pick up Block B
+stack Block B on top of Block C
+pick up Block A
+stack Block A on top of Block B
+[PLAN END]

@@ -1,0 +1,27 @@
+Here is an example problem:
+
+[STATEMENT]
+As initial conditions I have that, Block B is on top of Block A, Block B is clear, Block A is on the table and the hand is empty.
+My goal is to have that Block A is on the table, Block B is on the table.
+
+My plan is as follows:
+
+[PLAN]
+unstack Block B from on top of Block A
+put down Block B
+[PLAN END]
+
+Here is another example:
+
+[STATEMENT]
+As initial conditions I have that, Block B is clear, Block A is on top of Block C, Block B is on top of Block A, the hand is empty and Block C is on the table.
+My goal is to have that Block A is on the table, Block B is on the table and Block C is on the table.
+
+My plan is as follows:
+
+[PLAN]
+unstack Block B from on top of Block A
+put down Block B
+unstack Block A from on top of Block C
+put down Block A
+[PLAN END]

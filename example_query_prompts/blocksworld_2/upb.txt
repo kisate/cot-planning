@@ -1,0 +1,93 @@
+Here is an example problem:
+
+[STATEMENT]
+As initial conditions I have that, Block A is clear, Block B is clear, Block C is clear, the hand is empty, Block B is on top of Block D, Block A is on the table, Block D is on the table and Block C is on the table.
+My goal is to have that Block D is on top of Block B.
+
+My plan is as follows:
+
+[THOUGHTS]
+1. I take apart all the towers, and put all the blocks on the table.
+I will check every block. Any that are already on the table can be left there. Any that are on top of another block must be put on the table, but I can only unstack them if they are clear, so I will check that before trying to unstack any of them. If a block needs to be moved but isn't clear, I'll come back to it later once it is. 
+
+Block A is already on the table.
+Block D is already on the table.
+Block C is already on the table.
+Block B is on top of Block D. I can only unstack a block that is clear. B is clear according to the initial condition, so I can proceed. I unstack it. Then, I put it down on the table. This clears Block D.
+
+All the blocks are now clear and on the table.
+
+2. I look at the goal and stack each tower I need, starting from the bottom.
+My goal only mentions blocks B and D. I am free to ignore all other blocks. I check each of the mentioned blocks in order to determine which of them are the bases of towers.
+
+Block B needs to have Block D on top of it. I double check the goal: this is the only condition that must hold for block B. It does not need to be on top of any other block. Therefore, I can use it as the base of a tower.
+Block D needs to be on top of Block B, so it can't be the base of a tower.
+
+In summary, only Block B can be used as a base of a tower.
+
+I build the tower that has Block B as a base. I don't need to move Block B, and I leave it be, as I know it is already placed correctly.
+The block that goes on top of Block B is Block D. I pick up Block D. I stack it on top of Block B.
+This satisfies the part of the goal that says that Block D is on top of Block B.
+No block needs to be on top of Block D. Therefore this tower is complete.
+
+There are no other blocks which can be used as a base of a tower, and all the blocks mentioned in the goal have been placed, so I am done constructing.
+
+3. Now, I write down my plan in the required format:
+
+[PLAN]
+unstack Block B from on top of Block D
+put down Block B
+pick up Block D
+stack Block D on top of Block B
+[PLAN END]
+
+Here is another example:
+
+[STATEMENT]
+As initial conditions I have that, Block B is clear, Block B is on top of Block C, Block C is on top of Block A, the hand is empty, Block A is on the table, and Block D is on the table.
+My goal is to have that Block C is on top of Block B and Block D is on top of Block C.
+
+My plan is as follows:
+
+[THOUGHTS]
+1. I take apart all the towers, and put all the blocks on the table.
+I will check every block. Any that are already on the table can be left there. Any that are on top of another block must be put on the table, but I can only unstack them if they are clear, so I will check that before trying to unstack any of them. If a block needs to be moved but isn't clear, I'll come back to it later once it is. 
+
+Block A is already on the table.
+Block D is already on the table.
+Block C is on top of Block A. I can only unstack a block that is clear. The initial condition states that Block B is on top of Block C. Therefore, I can't unstack Block C until I move Block B. I don't touch it yet, and look at Block B.
+Block B is on top of Block C. I can only unstack a block that is clear. B is clear according to the initial condition, so I can proceed. I unstack it. Then, I put it down on the table. This clears Block C.
+Block C is now clear. It is still on top of Block A. I can only unstack a block that is clear. I cleared Block C previously, so I can proceed. I unstack Block C. Then, I put it down on the table. This clears Block A.
+
+All the blocks are now clear and on the table.
+
+2. I look at the goal and stack each tower I need, starting from the bottom.
+My goal only mentions blocks C, B and D. I am free to ignore all other blocks. I check each of the mentioned blocks in order to determine which of them are the bases of towers.
+
+Block C needs to be on top of Block B, so it can't be the base of a tower.
+Block B needs Block C on top of it. I double check the goal: this is the only condition that must hold for block B. It does not need to be on top of any other block. Therefore, I can use it as the base of a tower.
+Block D needs to be on top of Block C, so it can't be the base of a tower.
+
+In summary, only Block B can be used as the base of a tower.
+
+I build the tower that has Block B as a base. I don't need to move Block B, and I leave it be, as I know it is already placed correctly.
+The block that goes on top of Block B is Block C. I pick up Block C. I stack it on top of Block B.
+This satisfies the part of the goal that says that Block C is on top of Block B.
+The block that goes on top of Block C is Block D. I pick up Block D. I stack it on top of Block C.
+This satisfies the part of the goal that says that Block D is on top of Block C.
+No block needs to be on top of Block D. Therefore this tower is complete.
+
+There are no other blocks which can be used as a base of a tower, and all the blocks mentioned in the goal have been placed, so I am done constructing.
+
+3. Now, I write down my plan in the required format:
+
+[PLAN]
+unstack Block B from on top of Block C
+put down Block B
+unstack Block C from on top of Block A
+put down Block C
+pick up Block C
+stack Block C on top of Block B
+pick up Block D
+stack Block D on top of Block C
+[PLAN END]
