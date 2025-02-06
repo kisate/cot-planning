@@ -37,14 +37,14 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
                     stop=["[PLAN END]"])
             except Exception as e:
                 max_token_err_flag = True
-                print("[-]: Failed GPT3 query execution: {}".format(e))
+                print("[-]: Failed finetuned query execution: {}".format(e))
             text_responses = dict([(ind,resp["text"].strip()) for ind, resp in enumerate(response["choices"])]) if not max_token_err_flag else ""
             
             # text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
             return text_responses
         else:
             assert model is not None
-    elif '_chat' in engine:
+    elif 'gpt' in engine:
         
         eng = engine.split('_')[0]
         # print('chatmodels', eng)
@@ -64,7 +64,7 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
                     time.sleep(1)
                     continue
                 max_token_err_flag = True
-                print("[-]: Failed GPT3 query execution: {}".format(e))
+                print("[-]: Failed GPT query execution: {}".format(e))
             time.sleep(0.5)
 
             total_responses += 1
@@ -115,7 +115,7 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
                 stop=stop)
         except Exception as e:
             max_token_err_flag = True
-            print("[-]: Failed GPT3 query execution: {}".format(e))
+            print("[-]: Failed Other query execution: {}".format(e))
 
         text_responses = dict([(ind,resp["text"].strip()) for ind, resp in enumerate(response["choices"])]) if not max_token_err_flag else ""
         return text_responses
@@ -223,13 +223,13 @@ def send_query_with_feedback(query, engine, messages=[], system_message="You are
             response = client.chat.completions.create(model=eng, messages=messages, temperature=0)
         except Exception as e:
             if isinstance(e, client.error.RateLimitError):
-            err_flag = True
-            rate_limit_hit = True
+                err_flag = True
+                rate_limit_hit = True
         except Exception as e: 
             err_flag = True
             if "maximum context length" in str(e):
                 context_window_hit = True
-            print("[-]: Failed GPT3 query execution: {}".format(e))
+            print("[-]: Failed OpenAI query execution: {}".format(e))
         text_response = "" if err_flag else response['choices'][0]['message']['content']
         messages.append({"role": "assistant", "content": text_response})
         return text_response.strip(), messages, context_window_hit, rate_limit_hit   
