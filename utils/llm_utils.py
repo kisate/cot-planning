@@ -166,12 +166,12 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
                     stop=["[PLAN END]"])
             except Exception as e:
                 max_token_err_flag = True
-                print("[-]: Failed GPT3 query execution: {}".format(e))
+                print("[-]: Failed finetuned query execution: {}".format(e))
             text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
             return text_response.strip()
         else:
             assert model is not None
-    elif '_chat' in engine:
+    elif 'gpt' in engine:
         
         eng = engine.split('_')[0]
         # print('chatmodels', eng)
@@ -183,7 +183,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
             response = client.chat.completions.create(model=eng, messages=messages, temperature=temperature)
         except Exception as e:
             max_token_err_flag = True
-            print("[-]: Failed GPT3 query execution: {}".format(e))
+            print("[-]: Failed GPT query execution: {}".format(e))
         text_response = response.choices[0].message.content if not max_token_err_flag else "" 
         return text_response.strip()        
     else:
@@ -198,7 +198,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
                 stop=stop)
         except Exception as e:
             max_token_err_flag = True
-            print("[-]: Failed GPT3 query execution: {}".format(e))
+            print("[-]: Failed other query execution: {}".format(e))
 
         text_response = response.choices[0].text if not max_token_err_flag else ""
         return text_response.strip()
