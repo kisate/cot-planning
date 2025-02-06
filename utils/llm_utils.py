@@ -57,7 +57,7 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
             {"role": "user", "content": query}
             ]
             try:
-                response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=params['temperature'])
+                response = client.chat.completions.create(model=eng, messages=messages, temperature=params['temperature'])
                 text_responses[total_responses] = response.choices[0].message.content.strip()
             except Exception as e:
                 if 'Request timed out' in str(e):
@@ -103,9 +103,9 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
         return text_responses
     else:
         try:
-            response = openai.ChatCompletion.create(
+            response = client.chat.completions.create(
                 model=engine,
-                prompt=query,
+                messages=[{"role": "user", "content": query}],
                 temperature=params['temperature'],
                 max_tokens=max_tokens,
                 top_p=1,
@@ -155,7 +155,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
     elif engine == 'finetuned':
         if model:
             try:
-                response = openai.Completion.create(
+                response = client.chat.completions.create(
                     model=model['model'],
                     prompt=query,
                     temperature=temperature,
@@ -180,7 +180,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
         {"role": "user", "content": query}
         ]
         try:
-            response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=temperature)
+            response = client.chat.completions.create(model=eng, messages=messages, temperature=temperature)
         except Exception as e:
             max_token_err_flag = True
             print("[-]: Failed GPT3 query execution: {}".format(e))
@@ -188,7 +188,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
         return text_response.strip()        
     else:
         try:
-            response = openai.Completion.create(
+            response = client.chat.completions.create(
                 model=engine,
                 prompt=query,
                 temperature=temperature,
@@ -220,8 +220,9 @@ def send_query_with_feedback(query, engine, messages=[], system_message="You are
             #Just for returning validation message to generating LLM - query consists of the validation message
             messages.append({"role": "user", "content": query})
         try:
-            response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=0)
-        except openai.error.RateLimitError:
+            response = client.chat.completions.create(model=eng, messages=messages, temperature=0)
+        except Exception as e:
+            if isinstance(e, client.error.RateLimitError):
             err_flag = True
             rate_limit_hit = True
         except Exception as e: 
