@@ -9,3 +9,8 @@ llm_plan
 *.stats
 gpt_plan
 sas_plan.*
+.venv
+token
+.aider*
+.env
+fast-downward/*
