@@ -1,11 +1,17 @@
 from transformers import StoppingCriteriaList, StoppingCriteria
-import openai
 import os
 import anthropic
 import time
 from tqdm import tqdm
 # openai.api_key = os.environ["OPENAI_API_KEY"]
-openai.api_key = os.getenv("OPENAI_API_KEY")
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),  # This is the default and can be omitted
+)
+
+
 def generate_from_bloom(model, tokenizer, query, max_tokens,temperature=0):
     encoded_input = tokenizer(query, return_tensors='pt')
     stop = tokenizer("[PLAN END]", return_tensors='pt')
@@ -20,15 +26,14 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
         if model:
             #STILL using n within API
             try:
-                response = openai.ChatCompletion.create(
+                response = client.chat.completions.create(
                     model=model['model'],
-                    prompt=query,
+                    messages=[{
+                        "role": "user", "content": query
+                    }],
                     temperature=params['temperature'],
                     n = params['n'],
                     max_tokens=max_tokens,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0,
                     stop=["[PLAN END]"])
             except Exception as e:
                 max_token_err_flag = True
