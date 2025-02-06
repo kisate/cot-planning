@@ -52,7 +52,7 @@ def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[ST
             {"role": "user", "content": query}
             ]
             try:
-                response = client.chat.completions.create(model=eng, messages=messages, temperature=params['temperature'])
+                response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=params['temperature'])
                 text_responses[total_responses] = response.choices[0].message.content.strip()
             except Exception as e:
                 if 'Request timed out' in str(e):
@@ -150,7 +150,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
     elif engine == 'finetuned':
         if model:
             try:
-                response = client.completions.create(
+                response = openai.Completion.create(
                     model=model['model'],
                     prompt=query,
                     temperature=temperature,
@@ -175,7 +175,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
         {"role": "user", "content": query}
         ]
         try:
-            response = client.chat.completions.create(model=eng, messages=messages, temperature=temperature)
+            response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=temperature)
         except Exception as e:
             max_token_err_flag = True
             print("[-]: Failed GPT3 query execution: {}".format(e))
