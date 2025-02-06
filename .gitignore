@@ -1,5 +1,4 @@
 rough.py
-*.sh
 *.png
 # backup/*
 */sas_plan.*
