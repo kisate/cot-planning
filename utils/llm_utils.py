@@ -157,7 +157,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
             try:
                 response = client.chat.completions.create(
                     model=model['model'],
-                    prompt=query,
+                    messages=[{"role": "user", "content": query}],
                     temperature=temperature,
                     max_tokens=max_tokens,
                     top_p=1,
@@ -190,7 +190,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
         try:
             response = client.chat.completions.create(
                 model=engine,
-                prompt=query,
+                messages=[{"role": "user", "content": query}],
                 temperature=temperature,
                 top_p=1,
                 frequency_penalty=0,
