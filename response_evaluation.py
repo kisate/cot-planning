@@ -120,10 +120,10 @@ class ResponseEvaluator:
                 id = instance_dict["instance_id"]
                 if "blocksworld" in self.data["domain_name"]:
                     try:
-                        blocks, stack, i = id.split("_")
+                        blocks, stack, i = id.split("_")[:2]
                         cur_instance = self.instance.format(blocks, stack, i)
                     except ValueError:
-                        block, i = id.split("_")
+                        block, i = id.split("_")[:2]
                         stack = "1"
                         cur_instance = self.instance.format(block, stack, i)
                 else:

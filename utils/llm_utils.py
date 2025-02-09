@@ -6,10 +6,15 @@ from tqdm import tqdm
 # openai.api_key = os.environ["OPENAI_API_KEY"]
 import os
 from openai import OpenAI
+import requests
 
 client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),  # This is the default and can be omitted
 )
+
+deepseek_map = {
+    "deepseek-7b": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+}
 
 
 def generate_from_bloom(model, tokenizer, query, max_tokens,temperature=0):
@@ -186,6 +191,32 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]", temper
             print("[-]: Failed GPT query execution: {}".format(e))
         text_response = response.choices[0].message.content if not max_token_err_flag else "" 
         return text_response.strip()        
+    elif "deepseek" in engine:
+        try:
+            messages = [
+                {"role": "system", "content": "You are a planner assistant who comes up with correct plans."},
+                {"role": "user", "content": query}
+            ]
+
+            model_name = deepseek_map[engine]
+
+            response = requests.post(
+                "http://localhost:8000/v1/chat/completions",
+                json={
+                    "model": model_name,
+                    "messages": messages
+                }
+            )
+
+            response = response.json()
+
+            text_response = response["choices"][0]["message"]["content"]
+
+        except Exception as e:
+            max_token_err_flag = True
+            print("[-]: Failed DeepSeek query execution: {}".format(e))
+
+        return text_response.strip()
     else:
         try:
             response = client.chat.completions.create(

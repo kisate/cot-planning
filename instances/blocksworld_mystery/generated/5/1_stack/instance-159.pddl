@@ -1,0 +1,23 @@
+(define (problem BW-rand-5)
+(:domain blocksworld-4ops)
+(:objects a b c d e )
+(:init
+(harmony)
+(craves a e)
+(planet b)
+(planet c)
+(planet d)
+(craves e b)
+(province a)
+(province c)
+(province d)
+)
+(:goal
+(and
+(craves e d)
+(craves b e)
+(craves a b)
+(craves c a)
+)
+)
+)

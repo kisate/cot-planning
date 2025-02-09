@@ -321,7 +321,7 @@ if __name__=="__main__":
     \n upb = Universal Plan Implicit Breakdown\
     ')
     
-    parser.add_argument('--blocks_range', '-br', nargs=2, type=int, default=[3,20], help='Range of blocks')
+    parser.add_argument('--blocks_range', '-br', nargs=2, type=int, default=[3,10], help='Range of blocks')
     parser.add_argument('--multiple_stack_example', '-mse', action='store_true', help='Multiple stacks instances having multiple stack examples')
     parser.add_argument('--nstacks', '-ns', type=int,default=1, help='Number of stacks')
     parser.add_argument('--additional_arguments', '-aa', type=str, default = '',help='Additional info\

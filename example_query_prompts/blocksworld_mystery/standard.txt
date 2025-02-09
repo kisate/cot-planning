@@ -1,0 +1,39 @@
+Here is an example problem:
+
+[STATEMENT]
+As initial conditions I have that, province Block B, province Block C, harmony, Block C craves Block A, planet Block A, planet Block B.
+My goal is to have that Block A craves Block C and Block B craves Block A.
+
+My plan is as follows:
+
+[PLAN]
+feast Block C from Block A
+succumb Block C
+attack Block A
+overcome Block A from Block C
+attack Block B
+overcome Block B from Block A
+[PLAN END]
+
+Here is another example:
+
+[STATEMENT]
+As initial conditions I have that, province Block B, harmony, Block A craves Block D, Block B craves Block C, Block C craves Block A, planet Block D.
+My goal is to have that Block C craves Block D, Block A craves Block C and Block B craves Block A.
+
+My plan is as follows:
+
+[PLAN]
+feast Block B from Block C
+succumb Block B
+feast Block C from Block A
+succumb Block C
+feast Block A from Block D
+succumb Block A
+attack Block C
+overcome Block C from Block D
+attack Block A
+overcome Block A from Block C
+attack Block B
+overcome Block B from Block A
+[PLAN END]

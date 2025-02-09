@@ -21,11 +21,11 @@ class BlocksworldProblemGenerator:
         self.verbose = verbose
         self.n_stacks = number_of_stacks
         if number_of_stacks>1:
-            self.instances_dir = f"instances/blocksworld/generated"
-            self.domain_dir = f"instances/blocksworld/domain.pddl"
+            self.instances_dir = f"instances/blocksworld_mystery/generated"
+            self.domain_dir = f"instances/blocksworld_mystery/domain.pddl"
         else:
-            self.instances_dir = "instances/blocksworld/generated"
-            self.domain_dir = "instances/blocksworld/domain.pddl"
+            self.instances_dir = "instances/blocksworld_mystery/generated"
+            self.domain_dir = "instances/blocksworld_mystery/domain.pddl"
         self.instance_file = self.instances_dir+"/{}/{}_stack/instance-{}.pddl"
         self.add_existing_files_to_hash_set()
         pass
@@ -124,7 +124,7 @@ class BlocksworldProblemGenerator:
 
     def generate_instances(self):
         CMD = "pddlgenerators/blocksworld/./blocksworld 4 {}"
-        for total_blocks in tqdm(range(4, 21)):
+        for total_blocks in tqdm(range(4, 15)):
             if self.n_stacks > total_blocks//2:
                 print(f"Skipping {total_blocks} blocks, as number of stacks is {self.n_stacks}")
                 continue
@@ -132,7 +132,7 @@ class BlocksworldProblemGenerator:
             current_instance_num = self.get_current_instance_num(total_blocks)+1
             tries = 0
             while True:
-                if current_instance_num > 52:
+                if current_instance_num > 302:
                     break
                 instance = os.popen(CMD.format(total_blocks)).read()                
                 init = self.get_init(instance)

@@ -4,4 +4,4 @@ set -a
 source .env                                                                                                                                                         
 set +a 
 
-python response_generation.py -t standard -c blocksworld -e gpt-4o
+python response_generation.py -t standard -c blocksworld -e deepseek-7b

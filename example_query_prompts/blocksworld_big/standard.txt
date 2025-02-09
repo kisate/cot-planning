@@ -1,0 +1,39 @@
+Here is an example problem:
+
+[STATEMENT]
+As initial conditions I have that, Block B is clear, Block C is clear, the hand is empty, Block C is on top of Block A, Block A is on the table, Block B is on the table.
+My goal is to have that Block A is on top of Block C and Block B is on top of Block A
+
+My plan is as follows:
+
+[PLAN]
+unstack Block C from on top of Block A
+put down Block C
+pick up Block A
+stack Block A on top of Block C
+pick up Block B
+stack Block B on top of Block A
+[PLAN END]
+
+Here is another example:
+
+[STATEMENT]
+As initial conditions I have that, Block B is clear, the hand is empty, Block A is on top of Block D, Block B is on top of Block C, Block C is on top of Block A and Block D is on the table.
+My goal is to have that Block C is on top of Block D, Block A is on top of Block C and Block B is on top of Block A.
+
+My plan is as follows:
+
+[PLAN]
+unstack Block B from on top of Block C
+put down Block B
+unstack Block C from on top of Block A
+put down Block C
+unstack Block A from on top of Block D
+put down Block A
+pick up Block C
+stack Block C on top of Block D
+pick up Block A
+stack Block A on top of Block C
+pick up Block B
+stack Block B on top of Block A
+[PLAN END]
