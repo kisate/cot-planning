@@ -1,0 +1,23 @@
+(define (problem BW-rand-6)
+(:domain blocksworld-4ops)
+(:objects a b c d e f )
+(:init
+(handempty)
+(on a b)
+(on b e)
+(on c d)
+(on d a)
+(on e f)
+(ontable f)
+(clear c)
+)
+(:goal
+(and
+(on b e)
+(on c b)
+(on d c)
+(on f d)
+(on a f)
+)
+)
+)
