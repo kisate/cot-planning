@@ -142,7 +142,7 @@ class ResponseEvaluator:
                 except Exception as e:
                     correct = int(False)
                     validity = int(False)
-                    print(f"Warning: Plan extraction failed for instance {id}")    
+                    print(f"Warning: Plan extraction failed for instance {id}, {e}")    
                     print(llm_plan_response)
                 if self.verbose:
                     print(f"Correct: {bool(correct)}")

@@ -158,6 +158,25 @@ def text_to_plan_obfuscated(text, action_set, plan_file, data, ground_flag=False
 
     return plan, readable_plan
 
+from string import ascii_uppercase
+
+def fix_text(text):
+    if "Block" in text:
+        return text
+    
+    def replace_block(b):
+        if b in ascii_uppercase:
+            return f"Block {b}"
+        return b
+
+    lines = []
+    for line in text.split("\n"):
+        words = line.split(" ")
+        words = [replace_block(w) for w in words]
+        lines.append(" ".join(words))
+
+    return "\n".join(lines)
+
 def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=False):
     """
     Converts blocksworld plan in plain text to PDDL plan
@@ -187,10 +206,13 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
     raw_actions = [i.lower() for i in list(action_set.keys())]
     text_actions = [AD[x] for x in raw_actions]
 
+    text = fix_text(text)
+
     text = text.lower().strip()
     for raw_action, text_action in zip(raw_actions, text_actions):
         text = text.replace(text_action, raw_action)
     object_names = [x.lower() for x in LD.values()]
+    
 
     # ----------- GET PLAN FROM TEXT ----------- #
     plan = ""

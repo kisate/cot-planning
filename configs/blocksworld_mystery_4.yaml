@@ -1,0 +1,107 @@
+instance_dir: blocksworld_mystery_4/generated
+domain_file: blocksworld_mystery_4/domain.pddl
+domain_name: blocksworld_mystery_4
+n_instances: 501
+start: 1
+end: 500
+instances_template: instance-{}.pddl
+domain_intro: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      Swim object
+      Respond object from another object
+      Fire object
+      Deduct object from another object
+   
+   I have the following restrictions on my actions:
+       To perform Swim action, the following facts need to be true: Marble object, Fever object, Craving.
+       Once Swim action is performed the following facts will be true: Shadow object.
+       Once Swim action is performed the following facts will be false: Marble object, Fever object, Craving.
+       To perform Fire action, the following facts need to be true: Shadow object.
+       Once Fire action is performed the following facts will be true: Marble object, Fever object, Craving.    
+       Once Fire action is performed the following facts will be false: Shadow object.
+       To perform Deduct action, the following needs to be true: Marble other object, Shadow object.
+       Once Deduct action is performed the following will be true: Craving, Marble object, Object Mines other object.
+       Once Deduct action is performed the following will be false: Marble other object, Shadow object.
+       To perform Respond action, the following needs to be true: Object Mines other object, Marble object, Craving.
+       Once Respond action is performed the following will be true: Shadow object, Marble other object.
+       Once Respond action is performed the following will be false:, Object Mines other object, Marble object, Craving.
+
+domain_intro_state_tracking: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      Swim object
+      Respond object from another object
+      Fire object
+      Deduct object from another object
+   
+   I have the following restrictions on my actions:
+       To perform Swim action, the following facts need to be true: Marble object, Fever object, Craving.
+       Once Swim action is performed the following facts will be true: Shadow object.
+       Once Swim action is performed the following facts will be false: Marble object, Fever object, Craving.
+       To perform Fire action, the following facts need to be true: Shadow object.
+       Once Fire action is performed the following facts will be true: Marble object, Fever object, Craving.    
+       Once Fire action is performed the following facts will be false: Shadow object.
+       To perform Deduct action, the following needs to be true: Marble other object, Shadow object.
+       Once Deduct action is performed the following will be true: Craving, Marble object, Object Mines other object.
+       Once Deduct action is performed the following will be false: Marble other object, Shadow object.
+       To perform Respond action, the following needs to be true: Object Mines other object, Marble object, Craving.
+       Once Respond action is performed the following will be true: Shadow object, Marble other object.
+       Once Respond action is performed the following will be false:, Object Mines other object, Marble object, Craving.
+
+   The plan correctness is defined in terms of states resulting from executing the actions in the plan. An action is executable in a state when all its preconditions hold in that state. The state resulting from the action execution consists of everything in the previous state with the addition and deletion of add and delete effects of the action. Plan correctness is defined as follows: if the first action in the plan is applicable in the initial state, i.e., its preconditions are all present there; and the second action is applicable in the state resulting from applying the first action to the initial state, this process continues until the state resulting from the application of the last action in the last but one state gives rise to the final state where all the goals are satisfied.
+
+
+domain_intro_cost: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+   Swim object. It takes 1 minute to do the Swim action.
+   Respond object from another object. It takes 1 minute to do the Respond action.
+   Fire object. It takes 1 minute to do the Fire action.
+   Deduct object from another object. It takes 1 minute to do the Deduct action.
+   
+   I have the following restrictions on my actions:
+      To perform Swim action, the following facts need to be true: Marble object, Fever object, Craving.
+       Once Swim action is performed the following facts will be true: Shadow object.
+       Once Swim action is performed the following facts will be false: Marble object, Fever object, Craving.
+       To perform Fire action, the following facts need to be true: Shadow object.
+       Once Fire action is performed the following facts will be true: Marble object, Fever object, Craving.    
+       Once Fire action is performed the following facts will be false: Shadow object.
+       To perform Deduct action, the following needs to be true: Marble other object, Shadow object.
+       Once Deduct action is performed the following will be true: Craving, Marble object, Object Mines other object.
+       Once Deduct action is performed the following will be false: Marble other object, Shadow object.
+       To perform Respond action, the following needs to be true: Object Mines other object, Marble object, Craving.
+       Once Respond action is performed the following will be true: Shadow object, Marble other object.
+       Once Respond action is performed the following will be false:, Object Mines other object, Marble object, Craving.
+# actions:
+#   {pick-up: "swim {}",
+#    put-down: "fire {}",
+#    stack: "deduct {} from {}",
+#    unstack: "respond {} from {}"}
+
+actions:
+  {swim: "swim {}",
+   fire: "fire {}",
+   deduct: "deduct {} from {}",
+   respond: "respond {} from {}"}
+
+
+
+# predicates:
+#   {ontable: "fever {}",
+#    clear: "marble {}",
+#    handempty: "craving",
+#    "on": "{} mines {}",
+#   "holding": "shadow {}"}
+predicates:
+  {fever: "fever {}",
+   marble: "marble {}",
+   craving: "craving",
+   "mines": "{} mines {}",
+  "shadow": "shadow {}"}
+
+# encoded_objects: dictionary of object names, have to be alphabetical
+encoded_objects:
+  {"a": "object a", "b": "object b", "c": "object c", "d": "object d",
+   "e": "object e", "f": "object f", "g": "object g", "h": "object h",
+   "i": "object i", "j": "object j", "k": "object k", "l": "object l" }

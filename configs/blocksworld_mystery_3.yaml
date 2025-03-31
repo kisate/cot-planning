@@ -1,0 +1,107 @@
+instance_dir: blocksworld_mystery_3/generated
+domain_file: blocksworld_mystery_3/domain.pddl
+domain_name: blocksworld_mystery_3
+n_instances: 501
+start: 1
+end: 500
+instances_template: instance-{}.pddl
+domain_intro: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      Tltezi object
+      Xavirm object from another object
+      Jchntg object
+      Deesdu object from another object
+   
+   I have the following restrictions on my actions:
+       To perform Tltezi action, the following facts need to be true: Adohre object, Oxtslo object, Jqlyol.
+       Once Tltezi action is performed the following facts will be true: Ivbmyg object.
+       Once Tltezi action is performed the following facts will be false: Adohre object, Oxtslo object, Jqlyol.
+       To perform Jchntg action, the following facts need to be true: Ivbmyg object.
+       Once Jchntg action is performed the following facts will be true: Adohre object, Oxtslo object, Jqlyol.    
+       Once Jchntg action is performed the following facts will be false: Ivbmyg object.
+       To perform Deesdu action, the following needs to be true: Adohre other object, Ivbmyg object.
+       Once Deesdu action is performed the following will be true: Jqlyol, Adohre object, Object Gszswg other object.
+       Once Deesdu action is performed the following will be false: Adohre other object, Ivbmyg object.
+       To perform Xavirm action, the following needs to be true: Object Gszswg other object, Adohre object, Jqlyol.
+       Once Xavirm action is performed the following will be true: Ivbmyg object, Adohre other object.
+       Once Xavirm action is performed the following will be false:, Object Gszswg other object, Adohre object, Jqlyol.
+
+domain_intro_state_tracking: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      Tltezi object
+      Xavirm object from another object
+      Jchntg object
+      Deesdu object from another object
+   
+   I have the following restrictions on my actions:
+       To perform Tltezi action, the following facts need to be true: Adohre object, Oxtslo object, Jqlyol.
+       Once Tltezi action is performed the following facts will be true: Ivbmyg object.
+       Once Tltezi action is performed the following facts will be false: Adohre object, Oxtslo object, Jqlyol.
+       To perform Jchntg action, the following facts need to be true: Ivbmyg object.
+       Once Jchntg action is performed the following facts will be true: Adohre object, Oxtslo object, Jqlyol.    
+       Once Jchntg action is performed the following facts will be false: Ivbmyg object.
+       To perform Deesdu action, the following needs to be true: Adohre other object, Ivbmyg object.
+       Once Deesdu action is performed the following will be true: Jqlyol, Adohre object, Object Gszswg other object.
+       Once Deesdu action is performed the following will be false: Adohre other object, Ivbmyg object.
+       To perform Xavirm action, the following needs to be true: Object Gszswg other object, Adohre object, Jqlyol.
+       Once Xavirm action is performed the following will be true: Ivbmyg object, Adohre other object.
+       Once Xavirm action is performed the following will be false:, Object Gszswg other object, Adohre object, Jqlyol.
+
+   The plan correctness is defined in terms of states resulting from executing the actions in the plan. An action is executable in a state when all its preconditions hold in that state. The state resulting from the action execution consists of everything in the previous state with the addition and deletion of add and delete effects of the action. Plan correctness is defined as follows: if the first action in the plan is applicable in the initial state, i.e., its preconditions are all present there; and the second action is applicable in the state resulting from applying the first action to the initial state, this process continues until the state resulting from the application of the last action in the last but one state gives rise to the final state where all the goals are satisfied.
+
+
+domain_intro_cost: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+   Tltezi object. It takes 1 minute to do the Tltezi action.
+   Xavirm object from another object. It takes 1 minute to do the Xavirm action.
+   Jchntg object. It takes 1 minute to do the Jchntg action.
+   Deesdu object from another object. It takes 1 minute to do the Deesdu action.
+   
+   I have the following restrictions on my actions:
+      To perform Tltezi action, the following facts need to be true: Adohre object, Oxtslo object, Jqlyol.
+       Once Tltezi action is performed the following facts will be true: Ivbmyg object.
+       Once Tltezi action is performed the following facts will be false: Adohre object, Oxtslo object, Jqlyol.
+       To perform Jchntg action, the following facts need to be true: Ivbmyg object.
+       Once Jchntg action is performed the following facts will be true: Adohre object, Oxtslo object, Jqlyol.    
+       Once Jchntg action is performed the following facts will be false: Ivbmyg object.
+       To perform Deesdu action, the following needs to be true: Adohre other object, Ivbmyg object.
+       Once Deesdu action is performed the following will be true: Jqlyol, Adohre object, Object Gszswg other object.
+       Once Deesdu action is performed the following will be false: Adohre other object, Ivbmyg object.
+       To perform Xavirm action, the following needs to be true: Object Gszswg other object, Adohre object, Jqlyol.
+       Once Xavirm action is performed the following will be true: Ivbmyg object, Adohre other object.
+       Once Xavirm action is performed the following will be false:, Object Gszswg other object, Adohre object, Jqlyol.
+# actions:
+#   {pick-up: "tltezi {}",
+#    put-down: "jchntg {}",
+#    stack: "deesdu {} from {}",
+#    unstack: "xavirm {} from {}"}
+
+actions:
+  {tltezi: "tltezi {}",
+   jchntg: "jchntg {}",
+   deesdu: "deesdu {} from {}",
+   xavirm: "xavirm {} from {}"}
+
+
+
+# predicates:
+#   {ontable: "oxtslo {}",
+#    clear: "adohre {}",
+#    handempty: "jqlyol",
+#    "on": "{} gszswg {}",
+#   "holding": "ivbmyg {}"}
+predicates:
+  {oxtslo: "oxtslo {}",
+   adohre: "adohre {}",
+   jqlyol: "jqlyol",
+   "gszswg": "{} gszswg {}",
+  "ivbmyg": "ivbmyg {}"}
+
+# encoded_objects: dictionary of object names, have to be alphabetical
+encoded_objects:
+  {"a": "object a", "b": "object b", "c": "object c", "d": "object d",
+   "e": "object e", "f": "object f", "g": "object g", "h": "object h",
+   "i": "object i", "j": "object j", "k": "object k", "l": "object l" }

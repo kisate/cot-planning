@@ -6,7 +6,7 @@ import hashlib
 from tarski.io import PDDLReader
 from tarski.syntax.formulas import *
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
+openai.api_key = os.environ.get("OPENAI_API_KEY", "")
 
 from .llm_utils import *
 from .pddl_to_text import *

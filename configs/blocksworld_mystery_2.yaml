@@ -1,0 +1,108 @@
+instance_dir: blocksworld_mystery_2/generated
+domain_file: blocksworld_mystery_2/domain.pddl
+domain_name: blocksworld_mystery_2
+n_instances: 501
+start: 1
+end: 500
+instances_template: instance-{}.pddl
+
+domain_intro: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      Illuminate object
+      Distill object from another object
+      Silence object
+      Divest object from another object
+   
+   I have the following restrictions on my actions:
+       To perform Illuminate action, the following facts need to be true: Essence object, Aura object, Nexus.
+       Once Illuminate action is performed the following facts will be true: Pulse object.
+       Once Illuminate action is performed the following facts will be false: Essence object, Aura object, Nexus.
+       To perform Silence action, the following facts need to be true: Pulse object.
+       Once Silence action is performed the following facts will be true: Essence object, Aura object, Nexus.    
+       Once Silence action is performed the following facts will be false: Pulse object.
+       To perform Distill action, the following needs to be true: Essence other object, Pulse object.
+       Once Distill action is performed the following will be true: Nexus, Essence object, Object harmonizes other object.
+       Once Distill action is performed the following will be false: Essence other object, Pulse object.
+       To perform Divest action, the following needs to be true: Object harmonizes other object, Essence object, Nexus.
+       Once Divest action is performed the following will be true: Pulse object, Essence other object.
+       Once Divest action is performed the following will be false: Object harmonizes other object, Essence object, Nexus.
+       
+domain_intro_state_tracking: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      Attack object
+      Feast object from another object
+      Succumb object
+      Overcome object from another object
+   
+   I have the following restrictions on my actions:
+       To perform Attack action, the following facts need to be true: Province object, Planet object, Harmony.
+       Once Attack action is performed the following facts will be true: Pain object.
+       Once Attack action is performed the following facts will be false: Province object, Planet object, Harmony.
+       To perform Succumb action, the following facts need to be true: Pain object.
+       Once Succumb action is performed the following facts will be true: Province object, Planet object, Harmony.    
+       Once Succumb action is performed the following facts will be false: Pain object.
+       To perform Overcome action, the following needs to be true: Province other object, Pain object.
+       Once Overcome action is performed the following will be true: Harmony, Province object, Object Craves other object.
+       Once Overcome action is performed the following will be false: Province other object, Pain object.
+       To perform Feast action, the following needs to be true: Object Craves other object, Province object, Harmony.
+       Once Feast action is performed the following will be true: Pain object, Province other object.
+       Once Feast action is performed the following will be false:, Object Craves other object, Province object, Harmony.
+
+   The plan correctness is defined in terms of states resulting from executing the actions in the plan. An action is executable in a state when all its preconditions hold in that state. The state resulting from the action execution consists of everything in the previous state with the addition and deletion of add and delete effects of the action. Plan correctness is defined as follows: if the first action in the plan is applicable in the initial state, i.e., its preconditions are all present there; and the second action is applicable in the state resulting from applying the first action to the initial state, this process continues until the state resulting from the application of the last action in the last but one state gives rise to the final state where all the goals are satisfied.
+
+
+domain_intro_cost: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+   Attack object. It takes 1 minute to do the Attack action.
+   Feast object from another object. It takes 1 minute to do the Feast action.
+   Succumb object. It takes 1 minute to do the Succumb action.
+   Overcome object from another object. It takes 1 minute to do the Overcome action.
+   
+   I have the following restrictions on my actions:
+      To perform Attack action, the following facts need to be true: Province object, Planet object, Harmony.
+       Once Attack action is performed the following facts will be true: Pain object.
+       Once Attack action is performed the following facts will be false: Province object, Planet object, Harmony.
+       To perform Succumb action, the following facts need to be true: Pain object.
+       Once Succumb action is performed the following facts will be true: Province object, Planet object, Harmony.    
+       Once Succumb action is performed the following facts will be false: Pain object.
+       To perform Overcome action, the following needs to be true: Province other object, Pain object.
+       Once Overcome action is performed the following will be true: Harmony, Province object, Object Craves other object.
+       Once Overcome action is performed the following will be false: Province other object, Pain object.
+       To perform Feast action, the following needs to be true: Object Craves other object, Province object, Harmony.
+       Once Feast action is performed the following will be true: Pain object, Province other object.
+       Once Feast action is performed the following will be false:, Object Craves other object, Province object, Harmony.
+# actions:
+#   {pick-up: "illuminate {}",
+#    put-down: "silence {}",
+#    stack: "distill {} from {}",
+#    unstack: "divest {} from {}"}
+
+actions:
+  {illuminate: "illuminate {}",
+   silence: "silence {}",
+   distill: "distill {} from {}",
+   divest: "divest {} from {}"}
+
+
+
+# predicates:
+#   {ontable: "aura {}",
+#    clear: "essence {}",
+#    handempty: "nexus",
+#    "on": "{} harmonizes {}",
+#   "holding": "pulse {}"}
+predicates:
+  {aura: "aura {}",
+   essence: "essence {}",
+   nexus: "nexus",
+   "harmonizes": "{} harmonizes {}",
+  "pulse": "pulse {}"}
+
+# encoded_objects: dictionary of object names, have to be alphabetical
+encoded_objects:
+  {"a": "object a", "b": "object b", "c": "object c", "d": "object d",
+   "e": "object e", "f": "object f", "g": "object g", "h": "object h",
+   "i": "object i", "j": "object j", "k": "object k", "l": "object l" }
