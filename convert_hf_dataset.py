@@ -4,7 +4,8 @@ dataset = load_dataset("dmitriihook/deepseek-r1-qwen-32b-planning-6-blocks-big")
 dataset = load_dataset("dmitriihook/qwq-32b-planning-6-blocks")["train"]
 dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-2-24k")["train"]
 dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-3-24k")["train"]
-dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-4-24k")["train"]
+dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-6-24k")["train"]
+dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-3-24k-greedy")["train"].select(range(100))
 # dataset = load_dataset("dmitriihook/qwq-32b-planning-4-blocks-small")["train"]
 
 instances = {}
@@ -60,12 +61,12 @@ formatted_json = {}
 formatted_json["task"] = "plan_generation_po"
 formatted_json["instances"] = list(instances.values())
 formatted_json["prompt_type"] = "fewshot"
-formatted_json["domain"] = "blocksworld_mystery_4"
+formatted_json["domain"] = "blocksworld_mystery_3"
 
 import json
 from pathlib import Path
 
-final_dir = Path(f"responses/{formatted_json['domain']}/qwq-32b")
+final_dir = Path(f"responses/{formatted_json['domain']}/qwq-32b-greedy")
 
 final_dir.mkdir(parents=True, exist_ok=True)
 

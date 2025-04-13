@@ -3,10 +3,14 @@ import regex as re
 def get_ordered_objects(object_names, line):
     objs = []
     pos = []
+    n_steps = 0
     while '(' in line and ')' in line:
         start = line.index('(')
         end = line.index(')')
         line = line[:start] + line[end+1:]
+        n_steps += 1
+        if n_steps == 20:
+            break
     blocks = re.findall(r'block [a-z]', line)
     blocks = [block.replace('block ','').lower() for block in blocks]
     return blocks

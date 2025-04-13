@@ -1,3 +1,8 @@
+# pick-up: "illuminate"
+# put-down: "silence"
+# stack: "distill"
+# unstack: "divest"
+
 predicates = {
     "holding": "pulse",
     "handempty": "nexus",
