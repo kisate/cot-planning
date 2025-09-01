@@ -1,16 +1,16 @@
 from transformers import StoppingCriteriaList, StoppingCriteria
 import os
-import anthropic
+# import anthropic
 import time
 from tqdm import tqdm
 # openai.api_key = os.environ["OPENAI_API_KEY"]
 import os
-from openai import OpenAI
+# from openai import OpenAI
 import requests
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY", ""),  # This is the default and can be omitted
-)
+# client = OpenAI(
+#     api_key=os.environ.get("OPENAI_API_KEY", ""),  # This is the default and can be omitted
+# )
 
 deepseek_map = {
     "deepseek-7b": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
