@@ -6,7 +6,12 @@ dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-2-24k")["train"]
 dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-3-24k")["train"]
 dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-6-24k")["train"]
 dataset = load_dataset("dmitriihook/qwq-32b-planning-mystery-3-24k-greedy")["train"].select(range(100))
-# dataset = load_dataset("dmitriihook/qwq-32b-planning-4-blocks-small")["train"]
+dataset = load_dataset("dmitriihook/gpt-4.1-4-blocks")["train"].select(range(300))
+dataset = load_dataset("dmitriihook/llama-3.3-70b-planning-4-blocks")["train"].select(range(300))
+dataset = load_dataset("dmitriihook/deepseek-llama-70b-planning-4-blocks")["train"].select(range(300))
+dataset = load_dataset("dmitriihook/deepseek-r1-qwen-32b-planning-4-blocks")["train"].select(range(300))
+dataset = load_dataset("dmitriihook/nemotron-v1-49b-planning-4-blocks-2")["train"].select(range(300))
+
 
 instances = {}
 
@@ -23,11 +28,11 @@ for i, x in enumerate(dataset):
 
     raw_llm_answer = x["generation"]
     
-    if "</think>" not in raw_llm_answer:
-        raw_llm_answer = "Still thinking..."
-        cf += 1
-    else:
-        raw_llm_answer = raw_llm_answer.split("</think>")[1].strip()
+    # if "</think>" not in raw_llm_answer:
+    #     raw_llm_answer = "Still thinking..."
+    #     cf += 1
+    # else:
+    raw_llm_answer = raw_llm_answer.strip()
     
 
     instances[iid] = {
@@ -61,12 +66,12 @@ formatted_json = {}
 formatted_json["task"] = "plan_generation_po"
 formatted_json["instances"] = list(instances.values())
 formatted_json["prompt_type"] = "fewshot"
-formatted_json["domain"] = "blocksworld_mystery_3"
+formatted_json["domain"] = "blocksworld_4_blocks"
 
 import json
 from pathlib import Path
 
-final_dir = Path(f"responses/{formatted_json['domain']}/qwq-32b-greedy")
+final_dir = Path(f"responses/{formatted_json['domain']}/nemotron-v1")
 
 final_dir.mkdir(parents=True, exist_ok=True)
 

@@ -1,8 +1,16 @@
 from datasets import load_dataset
 
-
+model = "qwq-32b"
+model = "deepseek-r1-distill-llama-70b"
+# model = "llama-3_3-nemotron-super-49b-v1"
+model = "qwen2.5-32b-instruct-cot"
+model = "gpt-4.1-cot"
+model = "llama-3.3-70b"
+model = "llama-3.3-70b-instruct-cot"
+model = "deepseek-qwen-32b"
+model = "qwen2.5-32b"
 def main(mystery_n: int):
-    dataset = load_dataset(f"dmitriihook/qwq-32b-planning-mystery-{mystery_n}-24k-greedy")["train"]
+    dataset = load_dataset(f"dmitriihook/{model}-planning-mystery-{mystery_n}-16k-greedy", download_mode='force_redownload')["train"]
 
 
     instances = {}
@@ -20,11 +28,14 @@ def main(mystery_n: int):
 
         raw_llm_answer = x["generation"]
         
-        if "</think>" not in raw_llm_answer:
-            raw_llm_answer = "Still thinking..."
-            cf += 1
-        else:
-            raw_llm_answer = raw_llm_answer.split("</think>")[1].strip()
+        # if "</think>" not in raw_llm_answer:
+        #     raw_llm_answer = "Still thinking..."
+        #     cf += 1
+        # else:
+        #     raw_llm_answer = raw_llm_answer.split("</think>")[1].strip()
+        raw_llm_answer = raw_llm_answer.replace("PPLAN", "PLAN")
+        raw_llm_answer = raw_llm_answer.replace("**[PLAN]**", "[PLAN]")
+        raw_llm_answer = raw_llm_answer.replace("**[PLAN END]**", "[PLAN END]")
         
 
         instances[iid] = {
@@ -63,7 +74,7 @@ def main(mystery_n: int):
     import json
     from pathlib import Path
 
-    final_dir = Path(f"responses/{formatted_json['domain']}/qwq-32b-greedy")
+    final_dir = Path(f"responses/{formatted_json['domain']}/{model}")
 
     final_dir.mkdir(parents=True, exist_ok=True)
 
@@ -72,4 +83,5 @@ def main(mystery_n: int):
 
 
 for i in range(1, 16):
+# for i in [1]:
     main(i)
