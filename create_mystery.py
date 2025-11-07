@@ -96,11 +96,65 @@ _actions = {
         "overcome": "fold",
         "feast": "unravel"
     },
-    "mystery_16": {
-        "attack": "illuminate",
-        "succumb": "silence",
-        "overcome": "distill",
-        "feast": "divest"
+        "mystery_16": {
+        "attack": "metabolize",
+        "succumb": "thursday",
+        "overcome": "percentile",
+        "feast": "violet"
+    },
+    "mystery_17": {
+        "attack": "chop",
+        "succumb": "serve",
+        "overcome": "season",
+        "feast": "taste"
+    },
+    "mystery_18": {
+        "attack": "release",
+        "succumb": "grasp",
+        "overcome": "separate",
+        "feast": "combine"
+    },
+    "mystery_19": {
+        "attack": "transcend",
+        "succumb": "sublimate",
+        "overcome": "actualize",
+        "feast": "deconstruct"
+    },
+    "mystery_20": {
+        "attack": "flixate",
+        "succumb": "grample",
+        "overcome": "chonder",
+        "feast": "sprill"
+    },
+    "mystery_21": {
+        "attack": "open",
+        "succumb": "close",
+        "overcome": "connect",
+        "feast": "disconnect"
+    },
+    "mystery_22": {
+        "attack": "brighten",
+        "succumb": "harmonize",
+        "overcome": "sweeten",
+        "feast": "roughen"
+    },
+    "mystery_23": {
+        "attack": "oxidize",
+        "succumb": "compile",
+        "overcome": "denominate",
+        "feast": "polarize"
+    },
+    "mystery_24": {
+        "attack": "accelerate",
+        "succumb": "decelerate",
+        "overcome": "propel",
+        "feast": "brake"
+    },
+    "mystery_25": {
+        "attack": "yearn",
+        "succumb": "despair",
+        "overcome": "cherish",
+        "feast": "abandon"
     }
 }
 
@@ -204,11 +258,74 @@ _predicates = {
         "pain": "enveloping"
     },
     "mystery_16": {
-        "planet": "aura",
-        "province": "essence",
-        "harmony": "nexus",
-        "craves": "harmonizes",
-        "pain": "pulse"
+        "planet": "nostalgic",
+        "province": "hexagonal",
+        "harmony": "yesterday",
+        "craves": "percolates",
+        "pain": "seventeen"
+    },
+    "mystery_17": {
+        "planet": "plated",
+        "province": "fresh",
+        "harmony": "kitchen",
+        "craves": "simmering",
+        "pain": "marinated"
+    },
+    "mystery_18": {
+        "planet": "floating",
+        "province": "occupied",
+        "harmony": "crowded",
+        "craves": "repels",
+        "pain": "avoids"
+    },
+    "mystery_19": {
+        "planet": "phenomenal",
+        "province": "unmediated",
+        "harmony": "dialectical",
+        "craves": "instantiates",
+        "pain": "necessitates"
+    },
+    "mystery_20": {
+        "planet": "morkled",
+        "province": "thristy",
+        "harmony": "plimmish",
+        "craves": "vexates",
+        "pain": "quorbles"
+    },
+    "mystery_21": {
+        "planet": "paired",
+        "province": "single",
+        "harmony": "balanced",
+        "craves": "matches",
+        "pain": "mirrors"
+    },
+    "mystery_22": {
+        "planet": "melodic",
+        "province": "opaque",
+        "harmony": "bitter",
+        "craves": "radiates",
+        "pain": "muffled"
+    },
+    "mystery_23": {
+        "planet": "recursive",
+        "province": "isotopic",
+        "harmony": "amortized",
+        "craves": "catalyzes",
+        "pain": "vectorized"
+    },
+    "mystery_24": {
+        "planet": "stationary",
+        "province": "moving",
+        "harmony": "velocity",
+        "craves": "momentum",
+        "pain": "friction"
+    },
+    "mystery_25": {
+        "planet": "melancholic",
+        "province": "serene",
+        "harmony": "anxious",
+        "craves": "haunts",
+        "pain": "soothes"
     }
 }
 
@@ -243,7 +360,7 @@ def main(domain: str):
 
     def create_config():
         original_path = Path(
-            "configs/blocksworld_mystery.yaml"
+            "configs/blocksworld_mystery_1.yaml"
         )
         
         with open(original_path, "r") as f:
@@ -255,14 +372,14 @@ def main(domain: str):
         
         new_config = replace_names(data, actions)
         new_config = replace_names(new_config, predicates)
-        new_config = new_config.replace("blocksworld_mystery", new_name)
+        new_config = new_config.replace("blocksworld_mystery_1", new_name)
         
         with open(new_path, "w") as f:
             f.write(new_config)
             
     def create_example_queries():
         original_path = Path(
-            "example_query_prompts/blocksworld_mystery/standard.txt"
+            "example_query_prompts/blocksworld_mystery_1/standard.txt"
         )
         
         with open(original_path, "r") as f:
@@ -281,7 +398,7 @@ def main(domain: str):
             f.write(new_config)
             
     def create_instances():
-        input_path = Path("instances/blocksworld_mystery/generated/")
+        input_path = Path("instances/blocksworld_mystery_1/generated/")
 
         def map_line(line: str):
             for key in predicate_order:
@@ -294,7 +411,7 @@ def main(domain: str):
             with open(path, "r") as f:
                 data = f.readlines()
             
-            path = str(path).replace("blocksworld_mystery", new_name)
+            path = str(path).replace("blocksworld_mystery_1", new_name)
             
             Path(path).parent.mkdir(parents=True, exist_ok=True)
             
@@ -305,7 +422,7 @@ def main(domain: str):
                     
     def create_pddl():
         original_path = Path(
-            "instances/blocksworld_mystery/domain.pddl"
+            "instances/blocksworld_mystery_1/domain.pddl"
         )
         
         with open(original_path, "r") as f:
@@ -327,5 +444,5 @@ def main(domain: str):
     
         
 if __name__ == "__main__":
-    for i in range(2, 16):
+    for i in range(16, 26):
         main(f"mystery_{i}")
